@@ -4,11 +4,11 @@ import styles from "./assignments.module.css";
 import { useAssignments } from "./AssignmentsContext"; // Import the context hook
 
 export function Assignments() {
-  // Destructure the context values
   const { 
-    assignmentsList,               // Changed from 'assignments'
-    totalAssignmentsCount,         // Changed from 'totalAssignments'
-    completedAssignmentsCount       // Changed from 'completedAssignments'
+    assignmentsList,               
+    totalAssignmentsCount,         
+    completedAssignmentsCount,     
+    deleteAssignment, // Include delete function
   } = useAssignments(); // Use the context
 
   return (
@@ -31,7 +31,8 @@ export function Assignments() {
         {assignmentsList.map(assignment => (
           <Assignment 
             key={assignment.id} 
-            assignment={assignment} // Pass the whole assignment object
+            assignment={assignment} 
+            onDelete={deleteAssignment} // Pass delete function to Assignment
           />
         ))}
       </div>

@@ -9,9 +9,10 @@ interface AssignmentProps {
     title: string;
     completed: boolean;
   };
+  onDelete: (id: number) => void; // Add delete function prop
 }
 
-export function Assignment({ assignment }: AssignmentProps) {
+export function Assignment({ assignment, onDelete }: AssignmentProps) {
   return (
     <div className={styles.assignment}>
       <button className={styles.checkContainer} aria-label="Complete assignment">
@@ -20,7 +21,11 @@ export function Assignment({ assignment }: AssignmentProps) {
 
       <p>{assignment.title}</p> {/* Display the assignment title */}
 
-      <button className={styles.deleteButton} aria-label="Delete assignment">
+      <button
+        className={styles.deleteButton}
+        aria-label="Delete assignment"
+        onClick={() => onDelete(assignment.id)} // Call delete function on click
+      >
         <TbTrash size={20} />
       </button>
     </div>
